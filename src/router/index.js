@@ -20,5 +20,5 @@ const router = [
 ]
 export default new Router({
     router,
-    strict: process.env.NODE_ENV !== 'production',
+    // strict: process.env.NODE_ENV !== 'production',
 })
