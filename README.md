@@ -20,3 +20,11 @@ npm run build --report
 ```
 
 For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+> api 管理接口文档
+> assets 静态文件 图片 字体库等
+> config 线上和开发环境配置  
+> components 基础组件以及业务组件
+> router 路由相关配置
+> store vuex相关配置
+> page 页面
+> style 重置样式 以及mixin.less 等
