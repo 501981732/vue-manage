@@ -19,10 +19,13 @@ const actions = {
 const getters = {
 
 }
+const debug = process.env.NODE_ENV !== 'production'
 
 export default new Vuex.Store({
     state,
     actions,
     mutations,
     getters,
+    strict: debug,
+    plugins: debug ? [createLogger()] : []
 })
