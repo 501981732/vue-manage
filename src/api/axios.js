@@ -9,8 +9,9 @@ ax.interceptors.request.use((config) => {
   // 在发送请求之前做些什么
   if (config.method === 'post' ||
     config.method === 'put' ||
+    config.method === 'get' ||
     config.method === 'delete' ||
-    config.method === 'patch' || ) {
+    config.method === 'patch'  ) {
     // 请求时序列化参数
     config.data = querystring.stringify(config.data)
   }

@@ -5,14 +5,14 @@
  * imgBaseUrl: 图片所在域名地址
 **/ 
 
-let baseUrl = ''
-    routerMode = 'hash'
+let baseUrl = '',
+    routerMode = 'hash',
     imgBaseUrl;
 
 
-if (process.env.NODE_ENV = 'development') {
+if (process.env.NODE_ENV == 'development') {
     baseUrl = 'localhost:8001'
-} else if (process.env.NODE_ENV = 'production'){
+} else if (process.env.NODE_ENV == 'production'){
     baseUrl = 'localhost:8001'
     imgBaseUrl = ''
 }

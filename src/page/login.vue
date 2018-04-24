@@ -12,7 +12,7 @@
                     </el-form-item>     
                         <div class="form-btn">
                             <el-button size='small' type='primary' @click='loginIn'>确定</el-button>  
-                            <el-button size='small' type='primary'>注册</el-button>   
+                            <el-button size='small' type='primary' @click='register'>注册</el-button>   
                         </div>
                 </el-form> 
             </section>
@@ -45,11 +45,34 @@ export default {
     },
     methods: {
         async loginIn() {
-            try {
-
-            } catch (e) {
-
-            }
+            this.$refs[formName].validate(async () =>{
+                if(valid) {
+                    const res = await login(this.form)
+                    try {
+                        // 成功
+                        if( res.code ===1 ) {
+                            this.$message({
+                                type:'success',
+                                message:'登录成功'
+                            })
+                            this.$router.push({name:'manage'})
+                        } else {
+                            this.$message({
+                                type:'success',
+                                message:'登录成功'
+                            })
+                        }
+                    } catch (e) {
+                        this.$message({
+                            type:'success',
+                            message: JSON.stringify(e)
+                        })
+                    }
+                }
+            })
+        },
+        register() {
+            this.$router.push({name:'manage'})
         }
     }
 }
@@ -60,6 +83,7 @@ export default {
     .login-page{
         height: 100%;
         width: 100%;
+
         background: url(../assets/bg.jpg);
         .login-form{
             width: 350px;
@@ -84,7 +108,7 @@ export default {
         }
     }
 
-    .fade-enter-active {
+/*    .fade-enter-active {
       animation: fade-in 1s;
     }
     .fade-leave-active {
@@ -102,8 +126,9 @@ export default {
         transform: scale(1);
       }
     }
+*/
     .fade-enter-active, .fade-leave-active {
-        transition: all 2s;
+        transition: all 1.5s;
     }
     .fade-enter, .fade-leave-to {
         transform: translate3d(0, -50px, 0);
