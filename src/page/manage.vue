@@ -85,13 +85,12 @@
         // top: 60px;
     }
     .nav {
-        height: 60px;
+        height: 56px;
         background :#2c333b;
-        line-height: 60px;
+        line-height: 56px;
         color: #fff;
         h2{
         text-align: center;
-        line-height: 60px;
          text-shadow: 5px 5px 5px #FF0000
         }
     }
