@@ -11,7 +11,7 @@
                         <el-input v-model='form.password' :maxlength='40' size='small' placeholder='请输入密码'></el-input>  
                     </el-form-item>     
                         <div class="form-btn">
-                            <el-button size='small' type='primary' @click='loginIn'>确定</el-button>  
+                            <el-button size='small' type='primary' @click='loginIn("form")'>确定</el-button>  
                             <el-button size='small' type='primary' @click='register'>注册</el-button>   
                         </div>
                 </el-form> 
@@ -44,7 +44,7 @@ export default {
         this.showLogin = true
     },
     methods: {
-        async loginIn() {
+        async loginIn(formName) {
             this.$refs[formName].validate(async () =>{
                 if(valid) {
                     const res = await login(this.form)
@@ -68,6 +68,8 @@ export default {
                             message: JSON.stringify(e)
                         })
                     }
+                } else {
+                    return false
                 }
             })
         },
