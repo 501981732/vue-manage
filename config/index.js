@@ -13,8 +13,36 @@ module.exports = {
     // Paths
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
-    proxyTable: {},
-
+    proxyTable: {
+      "/api": {
+        target: "https://group.mrourou.com",
+        secure: false,
+        // pathRewrite: {"^/api" : ""}
+      }
+    },
+    // proxy: [{
+    //   context: ['/api/admin'],
+    //   target: 'https://group.mrourou.com',
+    //   secure: false
+    // }],
+    // proxy: {
+    //   "/api": {
+    //     target: "https://group.mrourou.com",
+    //     secure: false,
+    //     // pathRewrite: {"^/api" : ""}
+    //   }
+    // },
+    // proxyTable: {
+    //   '/goods':{
+    //       target:'http://localhost:3000'
+    //   },
+    //   '/goods/*':{
+    //     target:'http://localhost:3000'
+    //   },
+    //   '/users/*':{
+    //     target:'http://localhost:3000'
+    //   }
+    // },
     // Various Dev Server settings
     host: 'localhost', // can be overwritten by process.env.HOST
     port: 8080, // can be overwritten by process.env.PORT, if port is in use, a free one will be determined

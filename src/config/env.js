@@ -11,9 +11,9 @@ let baseUrl = '',
 
 
 if (process.env.NODE_ENV == 'development') {
-    baseUrl = 'localhost:8001'
+    // baseUrl = ''
 } else if (process.env.NODE_ENV == 'production'){
-    baseUrl = 'localhost:8001'
+    baseUrl = 'https://group.mrourou.com'
     imgBaseUrl = ''
 }
 

@@ -13,7 +13,7 @@ ax.interceptors.request.use((config) => {
     config.method === 'delete' ||
     config.method === 'patch'  ) {
     // 请求时序列化参数
-    config.data = querystring.stringify(config.data)
+    // config.data = querystring.stringify(config.data)
   }
   if (window.localStorage.getItem('TOKEN')) {
     config.headers.Authorization = `${JSON.parse(window.localStorage.getItem('TOKEN') || '').token}`

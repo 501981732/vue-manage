@@ -45,21 +45,23 @@ export default {
     },
     methods: {
         async loginIn(formName) {
-            this.$refs[formName].validate(async () =>{
+            this.$refs[formName].validate(async (valid) =>{
                 if(valid) {
-                    const res = await login(this.form)
+                    const {data} = await login(this.form)
                     try {
                         // 成功
-                        if( res.code ===1 ) {
+                        if( data.code ===200 ) {
                             this.$message({
                                 type:'success',
                                 message:'登录成功'
                             })
+                            console.log(data.data)
+                            localStorage.setItem('TOKEN',data.data)
                             this.$router.push({name:'manage'})
                         } else {
                             this.$message({
-                                type:'success',
-                                message:'登录成功'
+                                type:'info',
+                                message:'登录失败'
                             })
                         }
                     } catch (e) {
