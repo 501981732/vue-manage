@@ -7,10 +7,10 @@
                     background-color="#2c333b"
                     text-color="#fff"
                      active-text-color="#2c333b">
-                        <el-menu-item index="manage"><i class="el-icon-menu"></i>首页</el-menu-item>
+                        <el-menu-item index="/manage/index"><i class="el-icon-menu"></i>首页</el-menu-item>
                         <el-submenu index="2">
                             <template slot="title"><i class="el-icon-document"></i>数据管理</template>
-                            <el-menu-item index="userList">用户列表</el-menu-item>
+                            <el-menu-item index="/manage/userList">用户列表</el-menu-item>
                             <el-menu-item index="shopList">商家列表</el-menu-item>
                             <el-menu-item index="foodList">食品列表</el-menu-item>
                             <el-menu-item index="orderList">订单列表</el-menu-item>
@@ -43,7 +43,7 @@
                     <div class="nav">
                         <el-row>
                             <el-col :span="22">
-                                 <h2> 辛集慢生活后台管理了系统</h2>
+                                 <h2> 辛集慢生活后台管理系统</h2>
                             </el-col>
                             <el-col :span="2"> hello {{username}}</el-col>
                         </el-row>
@@ -75,7 +75,7 @@ import {mapGetters} from 'vuex'
         },
         computed: {
             defaultActive: function(){
-                return this.$route.path.replace('/', '');
+                return this.$route.path;
             },
             ...mapGetters([
                 'username'])

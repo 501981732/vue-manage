@@ -22,11 +22,11 @@ export default new Router({
       name: 'manage',
       component: manage,
       children: [{
-        path: '',
+        path: '/manage/index',
         component: home,
         meta: []
       },{
-        path: '/userList',
+        path: '/manage/userList',
         component: userList,
         meta: ['用户列表']
       }]
