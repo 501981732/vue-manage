@@ -65,7 +65,7 @@ export default {
                             localStorage.setItem('TOKEN',data.data)
                             // vuex
                             this.SET_USERNAME(this.form.username)
-                            this.$router.push({name:'manage'})
+                            this.$router.push({ path: '/manage'})
                         } else {
                             this.$message({
                                 type:'info',
@@ -84,7 +84,7 @@ export default {
             })
         },
         register() {
-            this.$router.push({name:'manage'})
+            // this.$router.push({path:'/magage'})
         }
     }
 }
