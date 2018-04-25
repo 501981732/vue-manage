@@ -16,7 +16,7 @@ ax.interceptors.request.use((config) => {
     // config.data = querystring.stringify(config.data)
   }
   if (window.localStorage.getItem('TOKEN')) {
-    config.headers.Authorization = `${JSON.parse(window.localStorage.getItem('TOKEN') || '').token}`
+    config.headers.Authorization = `${JSON.stringify(window.localStorage.getItem('TOKEN') || '')}`
   }
   return config;
 }, (error) => {

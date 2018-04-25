@@ -22,6 +22,7 @@
 
 <script>     
 import {login} from '@/api/apis'
+import {mapMutations} from 'vuex'
 export default {
     data() {
         return {
@@ -44,6 +45,12 @@ export default {
         this.showLogin = true
     },
     methods: {
+        // ...mapMutations({
+        //     getUserName: 'GET_USERNAME'
+        // }),
+        ...mapMutations([
+            'SET_USERNAME'
+            ]),
         async loginIn(formName) {
             this.$refs[formName].validate(async (valid) =>{
                 if(valid) {
@@ -55,8 +62,9 @@ export default {
                                 type:'success',
                                 message:'登录成功'
                             })
-                            console.log(data.data)
                             localStorage.setItem('TOKEN',data.data)
+                            // vuex
+                            this.SET_USERNAME(this.form.username)
                             this.$router.push({name:'manage'})
                         } else {
                             this.$message({

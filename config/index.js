@@ -20,11 +20,6 @@ module.exports = {
         // pathRewrite: {"^/api" : ""}
       }
     },
-    // proxy: [{
-    //   context: ['/api/admin'],
-    //   target: 'https://group.mrourou.com',
-    //   secure: false
-    // }],
     // proxy: {
     //   "/api": {
     //     target: "https://group.mrourou.com",
@@ -32,6 +27,7 @@ module.exports = {
     //     // pathRewrite: {"^/api" : ""}
     //   }
     // },
+    // 本地mock数据
     // proxyTable: {
     //   '/goods':{
     //       target:'http://localhost:3000'

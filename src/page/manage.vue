@@ -45,7 +45,7 @@
                             <el-col :span="22">
                                  <h2> 辛集慢生活后台管理了系统</h2>
                             </el-col>
-                            <el-col :span="2"> hello {{name}}</el-col>
+                            <el-col :span="2"> hello {{username}}</el-col>
                         </el-row>
                     </div>
                     <keep-alive>
@@ -59,6 +59,8 @@
 </template>
 
 <script>
+import {mapGetters} from 'vuex'
+
     export default {
         data() {
             return {
@@ -74,7 +76,9 @@
         computed: {
             defaultActive: function(){
                 return this.$route.path.replace('/', '');
-            }
+            },
+            ...mapGetters([
+                'username'])
         },
     }
 </script>
@@ -91,7 +95,8 @@
         color: #fff;
         h2{
         text-align: center;
-         text-shadow: 5px 5px 5px #FF0000
+         text-shadow: 2px 2px 2px #ffd04b;
+         font-family: 'Comic Sans MS', cursive;
         }
     }
     .el-menu-item.is-active {
