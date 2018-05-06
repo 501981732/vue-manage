@@ -1,2 +1,0 @@
-webpackJsonp([3],{Ai5B:function(e,t,n){"use strict";Object.defineProperty(t,"__esModule",{value:!0});var i={render:function(){var e=this.$createElement;return(this._self._c||e)("div",{staticClass:"user-list"},[this._v("\n    用户列表\n")])},staticRenderFns:[]};var s=n("Z0/y")({},i,!1,function(e){n("yViq")},null,null);t.default=s.exports},yViq:function(e,t){}});
-//# sourceMappingURL=3.e500e6bc17898624b7cf.js.map

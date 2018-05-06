@@ -73,7 +73,7 @@ import {mapGetters} from 'vuex'
         methods: { 
             jump() {
                // window.location = 'https://baidu.com'
-                window.open('https://group.mrourou.com')
+                window.open('https://group.mrourou.com/addPages.html')
             }
         },
         computed: {

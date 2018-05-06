@@ -23,7 +23,7 @@ module.exports = {
   context: path.resolve(__dirname, '../'),
   entry: {
     app: './src/main.js',
-    // addTest: './src/addTest.js'
+    addTest: './src/addTest.js'
   },
   output: {
     path: config.build.assetsRoot,

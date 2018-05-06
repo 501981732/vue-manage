@@ -80,8 +80,8 @@ const webpackConfig = merge(baseWebpackConfig, {
       filename: config.build.addPages,
       template: 'addPages.html',
       inject: true,
-      // chunks :'',
-      // excludeChunks : ['list','detail'],
+      chunks :'addTest',
+      // excludeChunks : ['app','vendor','manifest'],
       // inlineSource : '.(js|css)$' 
       minify: {
         // removeComments: true,
