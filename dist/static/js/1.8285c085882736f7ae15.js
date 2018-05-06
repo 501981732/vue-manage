@@ -1,0 +1,2 @@
+webpackJsonp([1],{FguS:function(e,t){},"lyB/":function(e,t,n){"use strict";Object.defineProperty(t,"__esModule",{value:!0});var l={render:function(){var e=this.$createElement;return(this._self._c||e)("div",{staticClass:"home"},[this._v("\n    hello world\n")])},staticRenderFns:[]};var r=n("Z0/y")({},l,!1,function(e){n("FguS")},null,null);t.default=r.exports}});
+//# sourceMappingURL=1.8285c085882736f7ae15.js.map
