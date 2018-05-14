@@ -277,7 +277,7 @@ function() {
 			"34": ["[嘘]", "../images/Face/34.png"]
 		},
 		flag: !0,
-		
+
 		id: -1,
 		len: 0,
 		deleteShow: !1,
@@ -448,7 +448,7 @@ function() {
 			ranking: function() {
 				var e = this,
 					t = function() {
-						setTimeout(t,dou_seconds<3000?6000:dou_seconds), jQuery.get("../app/index.php?i=" + e.weid + "&c=entry&do=new_bartop&m=meepo_xianchang", {
+						setTimeout(t,dou_seconds<3000?6000:dou_seconds), jQuery.get("./json/bartop_0.json", {
 							rid: e.rid,
 							type: 1
 						}, function(t, n) {
@@ -458,7 +458,7 @@ function() {
 							}).filter(function(e) {
 								return "0.00" != e.money ? e : void 0
 							}))
-						}, "json"), jQuery.get("../app/index.php?i=" + e.weid + "&c=entry&do=new_bartop&m=meepo_xianchang", {
+						}, "json"), jQuery.get("./json/bartop_1.json", {
 							rid: e.rid,
 							type: 0
 						}, function(t, n) {
@@ -476,8 +476,8 @@ function() {
 				var	t = function() {
 							console.log(e.flag);
 							$.ajax({
-								method: "POST",
-								url: "../app/index.php?i=" + e.weid + "&c=entry&do=new_bargetmore&m=meepo_xianchang",
+								method: "GET",
+								url: "./json/bargetmore.json",
 								dataType: "json",
 								timeout:10000,
 								//async: false,
@@ -488,7 +488,7 @@ function() {
 								success: function(json) {
 									var n = json.list;
 									var s = n.length - 1;
-									if(danmu2.isOpen==true&&danmu2.isLoop=='true'&&danmu2.msgArray.length>danmu2.max){	
+									if(danmu2.isOpen==true&&danmu2.isLoop=='true'&&danmu2.msgArray.length>danmu2.max){
 											danmu2.msgArray = danmu2.msgArray.slice(0,danmu2.max);
 											danmu2.loop();
 									}
@@ -508,7 +508,7 @@ function() {
 										}else{
 										   e.lasttime = json.lasttime;
 										}
-										setTimeout(t,4444);	
+										setTimeout(t,4444);
 									}else{
 									  if(n.length>0){
 											e.lasttime = n[s].createtime;
@@ -571,23 +571,23 @@ function() {
 																		danmu2.add(noShows[k]);
 																	}
 															}
-															setTimeout(t,4444);	
+															setTimeout(t,4444);
 														}else{
-															setTimeout(t,4444);	
+															setTimeout(t,4444);
 														}
 													}
 												})
 											}else{
-												setTimeout(t,4444);	
+												setTimeout(t,4444);
 											}
 									  }else{
-										setTimeout(t,4444);	
+										setTimeout(t,4444);
 									  }
 									}
 
 								},
 								error: function(XMLHttpRequest, textStatus, errorThrown) {
-									
+
 									if(textStatus=="timeout"){
 									  alert("加载超时啦!");
 									  window.location.reload();
@@ -829,7 +829,7 @@ function() {
 					window.location.href = -1 != t.indexOf("&uniqid=") ? t.slice(0, t.indexOf("&uniqid=") + 1) + "uniqid=" + Math.random() : t + "&uniqid=" + Math.random()
 				}*/
 				if ($(".bg_video").length == 0 && window.localStorage.getItem("bgPath")){
-					e.style.backgroundImage = "url(" + window.localStorage.getItem("bgPath") + ")"; 
+					e.style.backgroundImage = "url(" + window.localStorage.getItem("bgPath") + ")";
 				}else{
 					if(backgroundImg&&$(".bg_video").length == 0){
 						e.style.backgroundImage = "url(" + backgroundImg + ")";
@@ -838,7 +838,7 @@ function() {
 				if(window.localStorage.getItem("chat_change")){
 					this.penel.systemCheckbox.chatChange = !0;
 					document.getElementById("comment-box").classList.add("active");
-				} 
+				}
 				if(window.localStorage.getItem("move_left")){
 					this.penel.systemCheckbox.moveLeft = !0;
 					document.querySelectorAll(".main")[0].classList.add("active");
@@ -948,7 +948,7 @@ function() {
 					t.items[e].createtime && (n == t.items[e].createtime ? (t.items.splice(e, 1), tools.layer("删除成功！")) : tools.layer("删除失败,请重试！"))
 				})
 			},
-			
+
 			zhuti2video: function(index){
 				var t = this;
 				if(t.bp_zhutis.length==0){
@@ -987,17 +987,17 @@ function() {
 					var winH = $(window).height();
 					var dir = winW/winH;
 					if((t.video_W/t.video_W)<=dir){
-						$(".bg_video").css({width:winW,height:'auto',left:0,top:'50%',marginLeft:0}); 
+						$(".bg_video").css({width:winW,height:'auto',left:0,top:'50%',marginLeft:0});
 						var h = winW/dir;
-						$(".bg_video").css({marginTop:h/-2});					
+						$(".bg_video").css({marginTop:h/-2});
 					}else{
 						$(".bg_video").css({height:winH,width:'auto',top:0,left:'50%',marginTop:0});
 						var w = winH*dir;
-						$(".bg_video").css({marginLeft:w/-2});				
-					}		
-					});*/ 
-					
-					
+						$(".bg_video").css({marginLeft:w/-2});
+					}
+					});*/
+
+
 				}
 			},
 			drag: function(e) {
@@ -1017,9 +1017,9 @@ function() {
 		watch: {
 			bpItems: function() {
 				var e = this;
-				
+
 				if (1 == e.requestFlag && e.bpItems.length > 0) {
-					
+
 					switch (e.bpItems[0].type) {
 					case "bp":
 						e.requestFlag = !1;
@@ -1054,7 +1054,7 @@ function() {
 				var t = this,
 					n = null;
 				if (1 == e) {
-					
+
 						var s = t.paScreen.bp_time;
 						var W_width = $("body").width() + 2;
 						if(t.bp_bg_type==3){
@@ -1063,7 +1063,7 @@ function() {
 							document.querySelectorAll(".bp-bg-box")[0].innerHTML = '<video id="bp_bg_video_1" autoplay="autoplay" loop="loop" muted="muted" src="' + t.randbgVideo[rand_bg_video] + '" style="width:'+W_width+'px;height:auto"></video>';
 						  }else{
 							$(".bp-bg-box").css('background-color','#000');
-						  }					
+						  }
 						}else if(t.bp_bg_type==2){
 						  if(t.randbgImg.length>0){
 							var rand_bg_img = Math.floor((Math.random()*t.randbgImg.length));
@@ -1084,25 +1084,25 @@ function() {
 						setTimeout(i, 1000), setTimeout(function() {
 							t.bpTextShow = !0,$("#bp_music").length > 0 && $("#bp_music")[0].play()
 						}, 999)
-					
+
 				}
 			},
 			giftshow: function(e){
 				var t = this,
 					n = null;
 				if (1 == e) {
-					
+
 					var s = this.newgift.bp_time,
 						i = function() {
 							n = setTimeout(i, 1000), t.newgift.bp_time--, t.newgift.bp_time <= 0 && (t.giftshow = !1, t.requestFlag = !0, clearTimeout(n),setTimeout(function() {
-			
+
 								t.bpItems.length > 0 && t.$set(t.bpItems[0], "token", Math.random())
-								
+
 							}, 888))
 						};
 					setTimeout(i, 1000), setTimeout(function() {
 						t.giftshow = !0
-						
+
 					}, 999)
 				}
 			},
@@ -1113,14 +1113,14 @@ function() {
 					var s = this.redpack_detail.bp_time,
 						i = function() {
 							n = setTimeout(i, 1000), t.redpack_detail.bp_time--, t.redpack_detail.bp_time <= 0 && (t.redpackshow = !1, t.requestFlag = !0,t.redtextShow = !1, clearTimeout(n), setTimeout(function() {
-			
+
 								t.bpItems.length > 0 && t.$set(t.bpItems[0], "token", Math.random())
-								
+
 							}, 888))
 						};
 					setTimeout(i, 1000), setTimeout(function() {
 						t.redtextShow = !0
-						
+
 					}, 999)
 				}
 			},
@@ -1156,7 +1156,7 @@ function() {
 						i = function() {
 							n = setTimeout(i, 1000), t.confession.items.bp_time--, t.confession.items.bp_time <= 0 && (t.confession.show = !1, t.requestFlag = !0,t.confession.items.bp_time = s, clearTimeout(n), setTimeout(function() {
 								t.bpItems.length > 0 && t.$set(t.bpItems[0], "token", Math.random());
-								
+
 							}, 888))
 						};
 					setTimeout(i, 1000), setTimeout(function() {
@@ -1191,7 +1191,7 @@ function() {
 				return 1 == e ? t.classList.add("active") : t.classList.remove("active")
 			},
 			"penel.systemCheckbox.paRight": function(e) {
-				
+
 				var t = document.querySelectorAll(".full-screen")[0];
 				return 1 == e ? t.classList.add("active") : t.classList.remove("active")
 			},
@@ -1260,9 +1260,9 @@ function() {
 		mounted: function() {
 			var e = this;
 			this.bgvideo();
-			// this.ranking();
+			this.ranking();
 			this.autoToggle();
-			// this.requestComment();
+			this.requestComment();
 			this.loop();
 			this.testData();
 			this.menuShow();
