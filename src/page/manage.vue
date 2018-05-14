@@ -3,7 +3,7 @@
          <div class="manage_page fillcontain">
             <el-row style="height: 100%;">
                 <el-col :span="4"  style="min-height: 100%; background-color:#2c333b;">
-                    <el-menu :default-active="defaultActive" style="min-height: 100%;"  router       
+                    <el-menu :default-active="defaultActive" style="min-height: 100%;"  router
                     background-color="#2c333b"
                     text-color="#fff"
                      active-text-color="#2c333b">
@@ -53,7 +53,7 @@
                     </keep-alive>
                 </el-col>
             </el-row>
-        </div>       
+        </div>
     </div>
 
 </template>
@@ -70,10 +70,10 @@ import {mapGetters} from 'vuex'
         created() {
 
         },
-        methods: { 
+        methods: {
             jump() {
                // window.location = 'https://baidu.com'
-                window.open('https://group.mrourou.com/addPages.html')
+                window.open('https://group.mrourou.com/baping.html')
             }
         },
         computed: {

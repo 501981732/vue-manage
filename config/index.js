@@ -77,7 +77,7 @@ module.exports = {
     env: require('./prod.env'),
     // Template for index.html
     index: path.resolve(__dirname, '../dist/index.html'),
-    addPages: path.resolve(__dirname,'../dist/addPages.html'),
+    baping: path.resolve(__dirname,'../dist/baping.html'),
     // Paths
     assetsRoot: path.resolve(__dirname, '../dist'),
     assetsSubDirectory: 'static',

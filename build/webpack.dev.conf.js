@@ -58,10 +58,10 @@ const devWebpackConfig = merge(baseWebpackConfig, {
       inject: true
     }),
     new HtmlWebpackPlugin({
-      filename: config.build.addPages,
-      template: 'addPages.html',
+      filename: config.build.baping,
+      template: 'baping.html',
       inject: true,
-      chunks :'addTest',
+      chunks :'baping',
       excludeChunks : ['app','vendor','manifest'],
     }),
     // copy custom static assets

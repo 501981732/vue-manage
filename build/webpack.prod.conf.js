@@ -77,10 +77,10 @@ const webpackConfig = merge(baseWebpackConfig, {
 
 // 新增静态资源
     new HtmlWebpackPlugin({
-      filename: config.build.addPages,
-      template: 'addPages.html',
+      filename: config.build.baping,
+      template: 'baping.html',
       inject: true,
-      chunks :'addTest',
+      chunks :'baping',
       excludeChunks : ['app','vendor','manifest'],
       // inlineSource : '.(js|css)$'
       minify: {
