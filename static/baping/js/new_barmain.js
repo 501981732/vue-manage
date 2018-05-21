@@ -474,7 +474,7 @@ function() {
 			requestComment: function() {
 				var e = this;
 				var	t = function() {
-							console.log(e.flag);
+							// console.log(e.flag);
 							$.ajax({
 								method: "GET",
 								url: "./json/bargetmore.json",
@@ -1270,6 +1270,16 @@ function() {
 				'width':$(window).width()/1.5,
 				'height':$(window).width()/3,
 			});
+      //zbs:改变背景图片
+      $.get("./json/bg.json", function(res){
+        var src = "./images/" + res.picName;
+        $("body").css("background-image", "url(" + src + ")");
+        $(".loading").css("backgroundImage", "url(" + src + ")");
+        
+        var videoSrc = res.videoSrc;
+        $("body").attr("data-vide-bg", videoSrc);
+      });
+
 			var t = null;
 			t = setInterval(function() {
 				clearInterval(t), tools.removeEl(document.querySelectorAll(".loading")[0])
