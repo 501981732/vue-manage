@@ -457,7 +457,7 @@ function() {
       //   'http://xjmsh.oss-cn-beijing.aliyuncs.com/09.jpg',
       //   'http://xjmsh.oss-cn-beijing.aliyuncs.com/10.jpg'
       // ]
-      
+
 		},
 		methods: {
 			autoToggle: function() {
@@ -1080,10 +1080,12 @@ function() {
           success: function(res){
             if(res.code == 200){
               var bgData = res.data;
-              
+
               //如果房间是存活期间,则加载消息列表
               e.requestComment();
+              
               if(bgData.bgMovie){
+                // 如果有背景视频,则直接设置背景视频,不在请求背景图片
                 var videoSrc = bgData.bgMovie;
                 $("body").attr("data-vide-bg", videoSrc);
               }
@@ -1091,14 +1093,14 @@ function() {
                // 如果没有背景视频,则请求背景图片
                 $.ajax({
                   method: "GET",
-                  url: "./json/bg.json",
+                  url: "http://localhost:8080/api/admin/room/" + e.roomId + "/bg/image",
                   dataType: "json",
                   timeout:10000,
                   headers: {
                     "wx-group-token": e.token
                   },
                   success: function(res){
-                    e.bgPics = res.bgPics;
+                    e.bgPics = res.data;
                     $.backstretch(e.bgPics, {
                       fade : 1000, // 动画时长
                       duration : 2000 // 切换延时
@@ -1110,7 +1112,7 @@ function() {
                 });
               }
             }
-              
+
             else {
               alert(res.message)
             }
