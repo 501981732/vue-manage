@@ -1,4 +1,14 @@
 {
-  "picName": "plane.png",
-  "videoSrc": "http://xjmsh.oss-cn-beijing.aliyuncs.com/vHXaGF_K5Ug.mp4"
+  "bgPics": [
+    "http://xjmsh.oss-cn-beijing.aliyuncs.com/01.jpg",
+    "http://xjmsh.oss-cn-beijing.aliyuncs.com/02.jpg",
+    "http://xjmsh.oss-cn-beijing.aliyuncs.com/03.jpg",
+    "http://xjmsh.oss-cn-beijing.aliyuncs.com/04.jpg",
+    "http://xjmsh.oss-cn-beijing.aliyuncs.com/05.jpg",
+    "http://xjmsh.oss-cn-beijing.aliyuncs.com/06.jpg",
+    "http://xjmsh.oss-cn-beijing.aliyuncs.com/07.jpg",
+    "http://xjmsh.oss-cn-beijing.aliyuncs.com/08.jpg",
+    "http://xjmsh.oss-cn-beijing.aliyuncs.com/09.jpg",
+    "http://xjmsh.oss-cn-beijing.aliyuncs.com/10.jpg"
+  ]
 }

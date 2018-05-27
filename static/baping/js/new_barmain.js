@@ -10,7 +10,13 @@ function() {
 		return tools.chromeSupport()
 	}
 	var e = {
+    token: "",
+    roomId: "",
 		isActive: 0,
+    //如果没有背景视频,则加载的背景图片轮播 素材
+    bgPics: [],
+
+    // 源代码所有的状态
 		tonight: [],
 		total: [],
 		rid: RID,
@@ -436,6 +442,22 @@ function() {
 			return e
 		},
 		created: function() {
+      this.token = window.localStorage.getItem("TOKEN");
+      this.roomId = window.location.search[1] || "1";
+      this.isRoomAlive();
+      // this.bgPics = [
+      //   'http://xjmsh.oss-cn-beijing.aliyuncs.com/01.jpg',
+      //   'http://xjmsh.oss-cn-beijing.aliyuncs.com/02.jpg',
+      //   'http://xjmsh.oss-cn-beijing.aliyuncs.com/03.jpg',
+      //   'http://xjmsh.oss-cn-beijing.aliyuncs.com/04.jpg',
+      //   'http://xjmsh.oss-cn-beijing.aliyuncs.com/05.jpg',
+      //   'http://xjmsh.oss-cn-beijing.aliyuncs.com/06.jpg',
+      //   'http://xjmsh.oss-cn-beijing.aliyuncs.com/07.jpg',
+      //   'http://xjmsh.oss-cn-beijing.aliyuncs.com/08.jpg',
+      //   'http://xjmsh.oss-cn-beijing.aliyuncs.com/09.jpg',
+      //   'http://xjmsh.oss-cn-beijing.aliyuncs.com/10.jpg'
+      // ]
+      
 		},
 		methods: {
 			autoToggle: function() {
@@ -477,16 +499,22 @@ function() {
 							// console.log(e.flag);
 							$.ajax({
 								method: "GET",
-								url: "./json/bargetmore.json",
+								// url: "./json/bargetmore.json",
+                url: "http://localhost:8080/api/admin/baping/more/"+ e.roomId +"/" + e.lasttime,
 								dataType: "json",
 								timeout:10000,
 								//async: false,
-								data: {
-									lasttime: e.lasttime,
-									rid: e.rid
-								},
+                headers: {
+                  "wx-group-token": e.token
+                },
+
+								// data: {
+								// 	lasttime: e.lasttime,
+								// 	rid: e.rid
+								// },
 								success: function(json) {
-									var n = json.list;
+
+									var n = json.data;
 									var s = n.length - 1;
 									if(danmu2.isOpen==true&&danmu2.isLoop=='true'&&danmu2.msgArray.length>danmu2.max){
 											danmu2.msgArray = danmu2.msgArray.slice(0,danmu2.max);
@@ -513,7 +541,7 @@ function() {
 									  if(n.length>0){
 											e.lasttime = n[s].createtime;
 											e.id = n[s].id;
-											var ShowIds = [];
+											//var ShowIds = [];
 											for (var i = 0; i < n.length; i++) {
 												var temp_time = parseInt(n[i].createtime);
 												if(temp_time>open_time){//防止网络加载慢出问题
@@ -535,59 +563,62 @@ function() {
 													if(danmu2.isOpen==true){
 														danmu2.add(n[i]);
 													}
-													ShowIds.push(n[i].id);
+													//ShowIds.push(n[i].id);
 												}
 											}
-											if(ShowIds.length>0){
-												$.ajax({
-													method: "POST",
-													url: "../app/index.php?i=" + e.weid + "&c=entry&do=new_barupdateshow&m=meepo_xianchang",
-													dataType: "json",
-													//async: false,
-													data:{
-														ids:ShowIds,
-														rid: e.rid
-													},
-													success: function(json2) {
-														if(json2.errno==0 && json2.message.length>0){
-															var noShows = json2.message;
-															for (var k = 0; k < noShows.length; k++) {
-																	e.items.push(noShows[k]);
-																	if("bp" == noShows[k].type || "ds" == noShows[k].type || "bb" == noShows[k].type || "hb" == noShows[k].type || "gift" == noShows[k].type){
-																		  if(noShows[k].type=='hb'){
-																			if(hb_texiaoshow==1){
-																				e.bpItems.push(noShows[k]);
-																			}
-																		  }else{
-																			e.bpItems.push(noShows[k]);
-																		  }
-																	}else if("dm" == noShows[k].type){
-																			danmu.add([noShows[k]]);
-																	}
-																	if (noShows[k].image != "" && noShows[k].type != 'gift') {
-																		e.change_slide_imgs(noShows[k].id, noShows[k].image)
-																	}
-																	if(danmu2.isOpen==true){
-																		danmu2.add(noShows[k]);
-																	}
-															}
-															setTimeout(t,4444);
-														}else{
-															setTimeout(t,4444);
-														}
-													}
-												})
-											}else{
-												setTimeout(t,4444);
-											}
-									  }else{
-										setTimeout(t,4444);
+
+							// 				if(ShowIds.length>0){
+							// 					$.ajax({
+							// 						method: "POST",
+							// 						url: "../app/index.php?i=" + e.weid + "&c=entry&do=new_barupdateshow&m=meepo_xianchang",
+							// 						dataType: "json",
+							// 						//async: false,
+							// 						data:{
+							// 							ids:ShowIds,
+							// 							rid: e.rid
+							// 						},
+							// 						success: function(json2) {
+							// 							if(json2.errno==0 && json2.message.length>0){
+							// 								var noShows = json2.message;
+							// 								for (var k = 0; k < noShows.length; k++) {
+							// 										e.items.push(noShows[k]);
+							// 										if("bp" == noShows[k].type || "ds" == noShows[k].type || "bb" == noShows[k].type || "hb" == noShows[k].type || "gift" == noShows[k].type){
+							// 											  if(noShows[k].type=='hb'){
+							// 												if(hb_texiaoshow==1){
+							// 													e.bpItems.push(noShows[k]);
+							// 												}
+							// 											  }else{
+							// 												e.bpItems.push(noShows[k]);
+							// 											  }
+							// 										}else if("dm" == noShows[k].type){
+							// 												danmu.add([noShows[k]]);
+							// 										}
+							// 										if (noShows[k].image != "" && noShows[k].type != 'gift') {
+							// 											e.change_slide_imgs(noShows[k].id, noShows[k].image)
+							// 										}
+							// 										if(danmu2.isOpen==true){
+							// 											danmu2.add(noShows[k]);
+							// 										}
+							// 								}
+							// 								setTimeout(t,4444);
+							// 							}else{
+							// 								setTimeout(t,4444);
+							// 							}
+							// 						},
+                          // error: function(){
+                          //   setTimeout(t,4444);
+                          // }
+							// 					})
+							// 				}else{
+							// 					setTimeout(t,4444);
+							// 				}
 									  }
+                    setTimeout(t, 4444);
 									}
 
 								},
 								error: function(XMLHttpRequest, textStatus, errorThrown) {
-
+                  console.log(textStatus)  //error
 									if(textStatus=="timeout"){
 									  alert("加载超时啦!");
 									  window.location.reload();
@@ -1012,7 +1043,84 @@ function() {
 				document.addEventListener("mousemove", a, !1), document.addEventListener("mouseup", function() {
 					document.removeEventListener("mousemove", a, !1)
 				}, !1)
-			}
+			},
+
+      // 请求方法的封装
+      requestMethod: function(obj){
+        var api = obj.api || "",
+            para = obj.para || "",
+            that = obj.that;
+        $.ajax({
+          method: "GET",
+          url: api + para,
+          dataType: "json",
+          timeout: 10000,
+          //async: false,
+          headers: {
+            "wx-group-token": e.token
+          },
+          success: obj.suc,
+          error: obj.err
+        })
+      },
+
+      //房间状态
+      isRoomAlive: function(){
+        var e = this;
+        $.ajax({
+          method: "GET",
+          // https://group.mrourou.com/api/admin/room/1
+          url: "http://localhost:8080/api/admin/room/" + e.roomId,
+          dataType: "json",
+          timeout:10000,
+          //async: false,
+          headers: {
+            "wx-group-token": e.token
+          },
+          success: function(res){
+            if(res.code == 200){
+              var bgData = res.data;
+              
+              //如果房间是存活期间,则加载消息列表
+              e.requestComment();
+              if(bgData.bgMovie){
+                var videoSrc = bgData.bgMovie;
+                $("body").attr("data-vide-bg", videoSrc);
+              }
+              else {
+               // 如果没有背景视频,则请求背景图片
+                $.ajax({
+                  method: "GET",
+                  url: "./json/bg.json",
+                  dataType: "json",
+                  timeout:10000,
+                  headers: {
+                    "wx-group-token": e.token
+                  },
+                  success: function(res){
+                    e.bgPics = res.bgPics;
+                    $.backstretch(e.bgPics, {
+                      fade : 1000, // 动画时长
+                      duration : 2000 // 切换延时
+                    });
+                  },
+                  error: function(err){
+                    console.log(err);
+                  }
+                });
+              }
+            }
+              
+            else {
+              alert(res.message)
+            }
+
+          }
+        })
+
+      }
+
+
 		},
 		watch: {
 			bpItems: function() {
@@ -1262,7 +1370,7 @@ function() {
 			this.bgvideo();
 			this.ranking();
 			this.autoToggle();
-			this.requestComment();
+			// this.requestComment();
 			this.loop();
 			this.testData();
 			this.menuShow();
@@ -1271,14 +1379,14 @@ function() {
 				'height':$(window).width()/3,
 			});
       //zbs:改变背景图片
-      $.get("./json/bg.json", function(res){
-        var src = "./images/" + res.picName;
-        $("body").css("background-image", "url(" + src + ")");
-        $(".loading").css("backgroundImage", "url(" + src + ")");
-        
-        var videoSrc = res.videoSrc;
-        $("body").attr("data-vide-bg", videoSrc);
-      });
+      // $.get("./json/bg.json", function(res){
+      //   var src = "./images/" + res.picName;
+      //   $("body").css("background-image", "url(" + src + ")");
+      //   $(".loading").css("backgroundImage", "url(" + src + ")");
+      //
+      //   var videoSrc = res.videoSrc;
+      //   $("body").attr("data-vide-bg", videoSrc);
+      // });
 
 			var t = null;
 			t = setInterval(function() {

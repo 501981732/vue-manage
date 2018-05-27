@@ -17,7 +17,7 @@
     <script src="./js/layer.js"></script>
 	<script src="./js/marqueen.js"></script>
 	<!--背景图片轮播-->
-	<!-- <script src="http://api.asilu.com/cdn/jquery.js,jquery.backstretch.min.js" type="text/javascript"></script> -->
+  <script src="http://api.asilu.com/cdn/jquery.js,jquery.backstretch.min.js" type="text/javascript"></script>
 	<script>
 		var getRandom = function(begin,end){
 			return parseInt(Math.random()*((end>begin?end-begin:begin-end)+1)+(end>begin?begin:end));
@@ -882,7 +882,7 @@ body .tip-class .layui-layer-content{color:#fff !important;text-align:Center}
 											<span v-html="item.nickname"></span>
 											<!-- zbs: 未改 -->
 											<i class="sex" :class="{active:item.sex=='1'}" :style="{backgroundImage:'url('+sexPath+')'}"></i>
-											<time class="animated fadeIn" :datetime="item.createtime" :class="newest(item.createtime)">{{item.createtime | formatDate}}</time>
+											<time class="animated fadeIn" :datetime="item.createtime" :class="newest(item.createtime)">{{item.createtime/1000 | formatDate}}</time>
 										</div>
 									</div>
 									<template v-if="item.type=='bp'">
@@ -2070,23 +2070,23 @@ body .tip-class .layui-layer-content{color:#fff !important;text-align:Center}
 <script src="./js/jquery.vedio.js"></script>
 
 <!--背景图片轮播-->
-<!-- <script type="text/javascript">
-	$.backstretch([
-		'http://xjmsh.oss-cn-beijing.aliyuncs.com/01.jpg',
-		'http://xjmsh.oss-cn-beijing.aliyuncs.com/02.jpg',
-		'http://xjmsh.oss-cn-beijing.aliyuncs.com/03.jpg',
-		'http://xjmsh.oss-cn-beijing.aliyuncs.com/04.jpg',
-		'http://xjmsh.oss-cn-beijing.aliyuncs.com/05.jpg',
-		'http://xjmsh.oss-cn-beijing.aliyuncs.com/06.jpg',
-		'http://xjmsh.oss-cn-beijing.aliyuncs.com/07.jpg',
-		'http://xjmsh.oss-cn-beijing.aliyuncs.com/08.jpg',
-		'http://xjmsh.oss-cn-beijing.aliyuncs.com/09.jpg',
-		'http://xjmsh.oss-cn-beijing.aliyuncs.com/10.jpg'
-	], {
-		fade : 1000, // 动画时长
-		duration : 2000 // 切换延时
-	});
-</script> -->
+<!--<script type="text/javascript">-->
+	<!--$.backstretch([-->
+		<!--'http://xjmsh.oss-cn-beijing.aliyuncs.com/01.jpg',-->
+		<!--'http://xjmsh.oss-cn-beijing.aliyuncs.com/02.jpg',-->
+		<!--'http://xjmsh.oss-cn-beijing.aliyuncs.com/03.jpg',-->
+		<!--'http://xjmsh.oss-cn-beijing.aliyuncs.com/04.jpg',-->
+		<!--'http://xjmsh.oss-cn-beijing.aliyuncs.com/05.jpg',-->
+		<!--'http://xjmsh.oss-cn-beijing.aliyuncs.com/06.jpg',-->
+		<!--'http://xjmsh.oss-cn-beijing.aliyuncs.com/07.jpg',-->
+		<!--'http://xjmsh.oss-cn-beijing.aliyuncs.com/08.jpg',-->
+		<!--'http://xjmsh.oss-cn-beijing.aliyuncs.com/09.jpg',-->
+		<!--'http://xjmsh.oss-cn-beijing.aliyuncs.com/10.jpg'-->
+	<!--], {-->
+		<!--fade : 1000, // 动画时长-->
+		<!--duration : 2000 // 切换延时-->
+	<!--});-->
+<!--</script>-->
 
 <link rel="stylesheet" type="text/css" href="./css/footer.css?T=1525579194">
 <link href="./css/app_common.css" rel="stylesheet">
