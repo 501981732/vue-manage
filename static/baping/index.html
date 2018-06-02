@@ -1071,7 +1071,7 @@ body .tip-class .layui-layer-content{color:#fff !important;text-align:Center}
 			<div class="moneyScreen"  v-show="giftshow">
 				<div class="songli">
 					<div class="songliTop">
-					<div class="songlifrom">
+					  <div class="songlifrom">
 						<div class="songli_avatar_box" :id="newgift.sex == 1 ? 'man' : 'woman'">
 							<img :src="newgift.avatar" class="sluse">
 						</div>
@@ -1081,33 +1081,36 @@ body .tip-class .layui-layer-content{color:#fff !important;text-align:Center}
 						<div class="nv2"></div>
 						</div>
 					</div>
-					<div class="songlicontent">
+					  <div class="songlicontent">
 						<img src="./images/baping/images/gift/jiantou.png" class="jiantouimg">
 						<div class="songlicontent_box">
-						<div class="slTxt1">{{ newgift.extend_params.gift_des }}
-							<span>×{{ newgift.extend_params.gift_nums }}</span>
-						</div>
-						<div class="slTxt2" v-text="newgift.content"></div>
-						</div>
-					</div>
-					<div class="songlito">
-						<div class="songli_avatar_box" :id="newgift.extend_params.to_sex == 1 ? 'man' : 'woman'">
-							<!-- zbs: 未改 -->
-							<img :src="newgift.extend_params.to_avatar" class="sluse">
-						</div>
-						<div class="songli_user">
-						<span v-text="newgift.extend_params.to_nickname"></span>
-						<div class="nv1"></div>
-						<div class="nv2"></div>
+              <div class="slTxt1">{{ newgift.extend_params.gift_des }}
+                <span>×{{ newgift.extend_params.gift_nums }}</span>
+              </div>
+						  <div class="slTxt2" v-text="newgift.content"></div>
 						</div>
 					</div>
+              <!--
+            <div class="songlito">
+              <div class="songli_avatar_box" :id="newgift.extend_params.to_sex == 1 ? 'man' : 'woman'">
+                <img :src="newgift.extend_params.to_avatar" class="sluse">
+              </div>
+              <div class="songli_user">
+                <span v-text="newgift.extend_params.to_nickname"></span>
+                <div class="nv1"></div>
+                <div class="nv2"></div>
+              </div>
+            </div>
+            -->
+
 					</div>
+
 					<div class="songliBottom">
-					<img :src="newgift.extend_params.gift_gif" alt="送礼">
+					  <img :src="newgift.extend_params.gift_gif" alt="送礼">
 					</div>
 					<div class="songli_djs"><h2 class="animated tada infinite">倒计时<span v-text="newgift.bp_time" class="ds-span"></span>秒</h2></div>
 				</div>
-				</div>
+			</div>
 		</transition>
 		<transition enter-active-class="magictime vanishIn" leave-active-class="magictime vanishOut">
 			<section class="confession" v-show="confession.show">
@@ -1430,7 +1433,8 @@ body .tip-class .layui-layer-content{color:#fff !important;text-align:Center}
 	var SYS_BP_BG_TYPE = 1;
 	var SYS_BP_BG = [];
 	var SYS_BP_IMGBG = [];
-	var open_time = 1525579194;
+//	var open_time = 1525579194;
+  var open_time = 1496393876;
 	var open_canvas = "1";
 	var hb_texiaoshow = 1;
 	var bp_image_xuanku = 2;

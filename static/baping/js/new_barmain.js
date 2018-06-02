@@ -526,8 +526,14 @@ function() {
 										   if(danmu2.isOpen==true&&danmu2.isLoop=='true'){
 												danmu2.msgArray = n;
 												danmu2.loop();
-											}
+                       }
 										   for (var j = 0; j < n.length; j++) {
+
+                         /*zbs: 开始*/
+                         //在这里过滤掉加载历史消息的时候的一些礼物,红包等的霸屏
+
+                         /*zbs: 结束*/
+
 												if (n[j].image != "" && n[j].type != 'gift') {
 													e.change_slide_imgs(n[j].id, n[j].image)
 												}
@@ -538,6 +544,7 @@ function() {
 										}
 										setTimeout(t,4444);
 									}else{
+                    console.log("999999")
 									  if(n.length>0){
 											e.lasttime = n[s].createtime;
 											e.id = n[s].id;
@@ -545,19 +552,23 @@ function() {
 											for (var i = 0; i < n.length; i++) {
 												var temp_time = parseInt(n[i].createtime);
 												if(temp_time>open_time){//防止网络加载慢出问题
+                          console.log("*****")
 													e.items.push(n[i]);
 													if("bp" == n[i].type || "ds" == n[i].type || "bb" == n[i].type || "hb" == n[i].type || "gift" == n[i].type){
 														  if(n[i].type=='hb'){
-															if(hb_texiaoshow==1){
-																e.bpItems.push(n[i]);
-															}
+                                // 是红包,并且有特效的情况下
+                                if(hb_texiaoshow==1){
+                                  e.bpItems.push(n[i]);
+                                }
+
 														  }else{
 															e.bpItems.push(n[i]);
 														  }
-													}else if("dm" == n[i].type){
+													}else if("dm" == n[i].type || "text" == n[i].type){
 															danmu.add([n[i]]);
 													}
 													if (n[i].image != "" && n[i].type != 'gift') {
+                            // 右侧轮播图的盒子
 														e.change_slide_imgs(n[i].id, n[i].image)
 													}
 													if(danmu2.isOpen==true){
@@ -1083,7 +1094,7 @@ function() {
 
               //如果房间是存活期间,则加载消息列表
               e.requestComment();
-              
+
               if(bgData.bgMovie){
                 // 如果有背景视频,则直接设置背景视频,不在请求背景图片
                 var videoSrc = bgData.bgMovie;

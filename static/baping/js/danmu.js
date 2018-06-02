@@ -22,14 +22,14 @@
 		    _danmLastId: 0,
 		    // 已经或者在待播放队列
 		    _msgPlayedList:[],
-		    
+
 		    // 已经播放过的
 		    _msgPlayed:[],
 		    _msgPlayedNum : 0,// 已播数量
-		    
+
 		    // 是否有新消息
 		    _getNewMsg:false,
-		    
+
 		    // 最大的移动速度 px/s, 超过此值就不能看清了 2004/6
 		    _Vmax: 180,
 
@@ -45,17 +45,17 @@
 
 		    // 定时器的间隔 ms
 		    _playCheckTime: 500,
-		    
+
 		    // 消息总数
 		    _totalMsg:0,
-		    
+
 		    // 轮询时间间隔
 		    _pullCheckTime: 5000,
 		    _pullTimer: null,
 		    _pullAjaxObj: null,
 		    _conf: null
 	}
-	
+
 	danmu.init = function(){
 		//$(".js_danmuBox").css({ top:'164px' });
 		this._WW  = $(window).width();//屏幕宽度
@@ -65,15 +65,15 @@
 	    this._playState = 'played';
 	    danmu.playCheckOnce();
 	}
-	
+
 	danmu.bindEvent = function(){
-		
+
 		danmu.init();
 		$(window).on('resize', function(){
 		    danmu.init();
 		});
 	}
-	
+
 	// 停止轮询
 	  danmu.pullStop = function(){
 	    clearTimeout(this._pullTimer);
@@ -92,7 +92,7 @@
 	    this._danmLastId = list[list.length -1].id;
 	    danmu._msgList = danmu._msgList.concat(list);
 	};
-	
+
 	/**
 	 * 播放
 	 */
@@ -109,7 +109,7 @@
 			    }
 	      }
 	    }
-	    
+
 	    // 循环preList
 	    for(var i = 0; i < this._prePlayList.length; i++) {
 	      d   = this._prePlayList[i];
@@ -133,7 +133,7 @@
 	      }, this._playCheckTime);
 	    }
 	};
-	
+
 	danmu.pauseStop = function(){
 		if(this._playerTimer) {
 	      clearTimeout(this._playerTimer);
@@ -143,25 +143,25 @@
 	    this.pullStop();
 	    this._playState = 'stoped';
 	}
-	
+
 	/**
 	 * 停止弹幕
 	 */
 	 danmu.stop = function(){
-		
+
 	    if(this._playerTimer) {
 	      clearTimeout(this._playerTimer);
 	      this._playerTimer = null;
 	    }
-	    
+
 	    $('.js_danmuContent').remove();
-	    
+
 	    this._prePlayList = [];
 	    this.pullStop();
 
 	    this._playState = 'stoped';
     };
-	
+
 	/**
 	 * 为指定弹幕设置一个弹道
 	 */
@@ -170,7 +170,7 @@
 	    var Sn = this.data(d, 'width');
 	    var Tn = this.getDuration(d);
 	    var Vn = (Sn+this._WW) / Tn;
-	    
+
 	    // 通道中的尾部元素
 	    var lineLastD, ret = false;
 	    var Sn_1, Tn_1, Vn_1, Tn_1_past, tn, tn_1;
@@ -178,7 +178,7 @@
 
 	    // 遍历通道
 	    var totalLineNum = this._lineNum;
-		
+
 	    for(var i = 0; i < totalLineNum; i++) {
 		  lineLastD = this.getLastD(i);
 	      // 通道为空，直接可用
@@ -195,29 +195,29 @@
 				 ret = this.appendD(d, random_num);
 				 break;
 		   }
-			
+
 		  }
 	      Sn_1      = this.data(lineLastD, 'width');
 	      Tn_1      = this.getDuration(lineLastD);
 	      Vn_1      = (Sn_1+this._WW) / Tn_1;
 	      Tn_1_past = (now - this.data(lineLastD, 'start_t'))/ 1000;
-	      
+
 	      if(Tn_1_past*Vn_1 < Sn_1) {
 	        continue;
 	      }
 
 	      tn   = this._WW / Vn;
 	      tn_1 = (this._WW - Vn_1*Tn_1_past + Sn_1) / Vn_1;
-	      
+
 	      if(tn_1 < tn) {
 		      ret = this.appendD(d, i);
 		      break;
 		  }
-		 
+
 	    }
 	    return ret;
 	  };
-	  
+
 	/**
 	 * 本条弹幕所需时间
 	 */
@@ -233,7 +233,7 @@
 	    } else if (v > this._Vmax) {//比最大还大就等于最大
 	      duration = s/this._Vmax;
 	    } else {//处于最大与最小之间就等于平均
-	      duration = bp_time;
+	      duration = this._Tvisible;
 	    }
 	    return parseFloat(duration).toFixed(2)*1;
 	};
@@ -246,9 +246,9 @@
         //d.show();
         ret = true;
 	    return ret;
-	  };  
+	  };
 
-	
+
 	/**
 	 * 渲染
 	 */
@@ -289,7 +289,7 @@
 	      if(d.length==0) d = null;
 	    return d;
 	};
-	
+
 	/**
 	 * 存储相关变量
 	 */
@@ -306,7 +306,7 @@
 	      d['_'+prop] = val;
 	    }
 	  };
-	
+
 	/**
 	 * 动画
 	 */
@@ -334,7 +334,7 @@
 	    }
 	    return d;
 	}
-	
+
 	// 可暂停弹幕
 	  danmu.animateOneInterv = function(d)
 	  {
@@ -356,7 +356,7 @@
 		    	leftX += vSpeed;
 		    	//console.log('timecount, timeLeng', timeCount, timeLeng);
 		    	danmu.data(d, 'hasmoveD', leftX);
-		    	
+
 		    	if (leftX > mostL) {
 		    		d.remove();
 		    		//danmu.deleteByElem(moveInter, danmu._intervalArr);
@@ -366,7 +366,7 @@
 		    	d.css('left', -leftX+'px');
 		     }, 5);
 	  }
-	  
+
 	// 获取弹幕运动速度
 	  danmu.getSpeed = function(d)
 	  {
@@ -376,7 +376,7 @@
 	      duration;
 
 	    v = s/this._Tvisible;
-	    
+
 	    if(v < this._Vmin) {
 	      return this._Vmin;
 	    } else if (v > this._Vmax) {
@@ -385,7 +385,7 @@
 	      return v;
 	    }
 	  }
-	
+
 	danmu.max_height = function(){
 		var can_row = 0;
 		var wh = $(window).height();
@@ -402,7 +402,7 @@
 		return can_row;
 	}
 	/**
-	 * 指定消息数量 
+	 * 指定消息数量
 	 */
 	danmu.getMessage = function(maxNum){
 	    maxNum = maxNum || 1;
