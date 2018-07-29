@@ -434,7 +434,10 @@ function() {
 				extend_params: {'bb_to':'赞木','bb_toavatar':'','bb_video':''}
 			},
 			video: ["http://haibarvideo.oss-cn-shenzhen.aliyuncs.com/gaobai_02.webm", "http://haibarvideo.oss-cn-shenzhen.aliyuncs.com/gaobai_03.webm", "http://haibarvideo.oss-cn-shenzhen.aliyuncs.com/gaobai_05.webm", "http://haibarvideo.oss-cn-shenzhen.aliyuncs.com/gaobai_06.webm"]
-		}
+		},
+
+    //切换侧边的flag
+    slideFlag: true
 	};
 	vm = new Vue({
 		el: "#yiyu-container",
@@ -544,7 +547,7 @@ function() {
 										}
 										setTimeout(t,4444);
 									}else{
-                    console.log("999999")
+                    // console.log("999999");
 									  if(n.length>0){
 											e.lasttime = n[s].createtime;
 											e.id = n[s].id;
@@ -552,7 +555,7 @@ function() {
 											for (var i = 0; i < n.length; i++) {
 												var temp_time = parseInt(n[i].createtime);
 												if(temp_time>open_time){//防止网络加载慢出问题
-                          console.log("*****")
+                          // console.log("*****");
 													e.items.push(n[i]);
 													if("bp" == n[i].type || "ds" == n[i].type || "bb" == n[i].type || "hb" == n[i].type || "gift" == n[i].type){
 														  if(n[i].type=='hb'){
@@ -1131,6 +1134,15 @@ function() {
           }
         })
 
+      },
+
+      //切换右侧侧边栏的显示
+      toggleSlide: function() {
+        var e = this;
+        setInterval(function() {
+          e.slideFlag = !e.slideFlag;
+        }, 10000)
+
       }
 
 
@@ -1380,6 +1392,9 @@ function() {
 		},
 		mounted: function() {
 			var e = this;
+
+      //zbs: 切换侧边栏
+      this.toggleSlide();
 			this.bgvideo();
 			this.ranking();
 			this.autoToggle();

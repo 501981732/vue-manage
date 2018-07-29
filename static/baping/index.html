@@ -941,15 +941,14 @@ body .tip-class .layui-layer-content{color:#fff !important;text-align:Center}
 				</div>
 			</div>
 			<div class="right">
-				<div id="sb-slider" class="slide_image_box" >
-				<div id="imageBox" class="imageBox">
-							<div class="defaultImage visible">
-								<img src="./images/jHWWWZahbH66frWabSZHf75aW6WWwa.png" class="slidebox_img"  />
-							</div>
-
+				<div id="sb-slider" class="slide_image_box" v-show="slideFlag">
+          <div id="imageBox" class="imageBox">
+                <div class="defaultImage visible">
+                  <img src="./images/jHWWWZahbH66frWabSZHf75aW6WWwa.png" class="slidebox_img"  />
+                </div>
+          </div>
 				</div>
-				</div>
-				<div id="tuhao-lists" class="baping"  style="display:none">
+				<div id="tuhao-lists" class="baping" v-show="!slideFlag">
 					<div class="show-bp">
 						<div class="toggle-list">
 							<ul>
@@ -994,6 +993,7 @@ body .tip-class .layui-layer-content{color:#fff !important;text-align:Center}
 						</transition>
 					</div>
 				</div>
+
 				<div class="qrcode-box">
 					<div id="qrcode-appear" class="qrcode"  style="z-index:670">
 						<i class="qrcode-logo"></i>
